@@ -5,203 +5,134 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>成功への扉！インスタ本気合宿総復習クイズ</title>
 <style>
-/* ===== デザイン・コンセプト: 漆黒と炎の情熱 ===== */
 *{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -webkit-tap-highlight-color: transparent; /* iOS Safari タップ時の網掛け防止 */
+  -webkit-tap-highlight-color: transparent;
 }
 :root{
-  --c-fire: linear-gradient(135deg, #FF4D00, #F59E0B); /* 燃えるようなオレンジ */
-  --c-gold: #FFD700;
-  --c-bg: #000000; /* 漆黒背景 */
-  --c-card: #111111;
-  --c-border: #333333;
-  --c-text: #FFFFFF;
-  --c-text-mid: #AAAAAA;
-  --c-success: #22C55E;
-  --c-error: #EF4444;
+  --c-bg: #FFF7ED;
+  --c-main: #EA580C;
+  --c-deep: #9A3412;
+  --c-card: #FFFFFF;
+  --c-text: #431407;
+  --c-success: #15803D;
+  --c-error: #B91C1C;
 }
 body{
-  font-family:'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-family:'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
   background: var(--c-bg);
   color: var(--c-text);
   min-height: 100vh;
-  min-height: 100dvh; /* iOS Safari用 動的な高さ対応 */
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-#app{max-width:520px;margin:0 auto;padding:2rem 1.25rem}
+#app{max-width:520px;margin:0 auto;padding:1rem 0.75rem}
 .screen{display:none}
 .screen.active{display:block; animation: fadeIn 0.4s ease;}
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ===== START SCREEN ===== */
+/* ===== 開始画面 ===== */
 .hero-badge{
   display: inline-block;
-  background: var(--c-fire);
-  color: #000;
-  font-size: 11px;
-  font-weight: 900;
-  padding: 4px 10px;
+  background: var(--c-main);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px;
   border-radius: 4px;
-  margin-bottom: 0.8rem;
-  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
 }
 .app-title{
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 900;
   line-height: 1.2;
-  margin-bottom: 1rem;
-  background: var(--c-fire);
+  margin-bottom: 0.8rem;
+  background: linear-gradient(135deg, #EA580C 0%, #9A3412 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 8px rgba(255, 77, 0, 0.3));
 }
 .app-sub{
   font-size: 14px;
-  color: var(--c-text-mid);
-  margin-bottom: 2.5rem;
-  border-left: 2px solid #FF4D00;
-  padding-left: 1rem;
+  color: var(--c-deep);
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--c-main);
+  padding-left: 0.8rem;
+  font-weight: bold;
 }
 
-.genre-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:1.5rem}
+.genre-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:1.5rem}
 .genre-card{
   background: var(--c-card);
-  border: 1px solid var(--c-border);
-  border-radius: 16px;
-  padding: 1.5rem 1rem;
+  border: 1px solid #FED7AA;
+  border-radius: 12px;
+  padding: 1rem 0.5rem;
   cursor: pointer;
   text-align: left;
-  transition: all 0.2s;
-  position: relative;
-  overflow: hidden;
-  -webkit-appearance: none;
 }
-.genre-card:hover{
-  border-color: #FF4D00;
-  box-shadow: 0 0 20px rgba(255, 77, 0, 0.2);
-  transform: translateY(-2px);
-}
-.g-dot{font-size: 24px; margin-bottom: 12px; display: block;}
-.genre-name{font-size:14px;font-weight:700;color:var(--c-text)}
-.genre-count{font-size:10px;color:#FF4D00;margin-top:4px;font-weight: 800;}
+.genre-name{font-size:13px;font-weight:bold;color:var(--c-text); display: block; margin-top: 5px;}
+.genre-count{font-size:10px;color:var(--c-main);margin-top:2px;font-weight: bold;}
 
 .all-card{
   grid-column: 1/-1;
-  background: linear-gradient(90deg, #111, #222);
-  border: 1px solid #FF4D00 !important;
+  background: #FFF;
+  border: 2px solid var(--c-main) !important;
   display: flex;
   align-items: center;
   gap: 15px;
+  padding: 1rem;
 }
-.all-card .genre-name { color: var(--c-gold); font-size: 16px; }
 
-/* ===== QUIZ SCREEN HEADER (Home Button Updated) ===== */
-.q-header{ margin-bottom: 1.5rem; }
-.q-meta{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px}
-.q-badge-wrap{ display: flex; align-items: center; gap: 10px; }
-.q-badge{font-size:11px; font-weight:800; padding:4px 12px; border-radius:4px; background:#222; color:var(--c-gold); letter-spacing: 0.05em;}
+/* ===== クイズ画面 ===== */
+.q-meta{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px}
+.q-badge{font-size:11px; font-weight:bold; padding:4px 12px; border-radius:4px; background:var(--c-main); color:#fff;}
+.home-btn{ background: #fff; border: 1px solid #FED7AA; color: var(--c-deep); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 11px;}
 
-.home-btn{
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid #555;
-  color: #CCC;
-  font-size: 13px;
-  font-weight: 800;
-  padding: 6px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-  -webkit-appearance: none;
+.progress-bar{height:6px;background:#FFEDD5;border-radius:3px; overflow: hidden; margin-bottom: 10px;}
+.progress-fill{height:100%;background:var(--c-main); transition:width 0.4s;}
+
+.question-text{font-size:18px;font-weight:bold;margin-bottom:1rem; color: var(--c-deep); line-height: 1.4;}
+
+#choices{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
-.home-btn:hover{ color: #fff; border-color: #FF4D00; background: rgba(255, 77, 0, 0.15); }
-
-.progress-bar{height:5px;background:#222;border-radius:3px; overflow: hidden;}
-.progress-fill{height:100%;background:var(--c-fire);box-shadow: 0 0 10px #FF4D00; transition:width 0.4s ease;}
-
-/* ===== QUIZ CONTENT ===== */
-.question-text{font-size:18px;font-weight:700;line-height:1.6;margin-bottom:1.8rem; min-height: 3.2em;}
 
 .choice-btn{
-  background: #111;
-  border: 1px solid #333;
-  border-radius: 12px;
-  padding: 1.1rem;
-  margin-bottom: 12px;
+  background: #fff;
+  border: 1px solid #FED7AA;
+  border-radius: 10px;
+  padding: 0.75rem 0.5rem;
   cursor: pointer;
-  text-align: left;
-  font-size: 15px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
   color: var(--c-text);
   width: 100%;
-  transition: all 0.2s;
-  -webkit-appearance: none;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.3;
 }
-.choice-btn:hover:not(:disabled){ border-color: #FF4D00; background: #1a100a; }
-.choice-btn.correct{ border-color: var(--c-success); background: #062010; color: #fff; }
-.choice-btn.wrong{ border-color: var(--c-error); background: #200606; color: #fff; }
+.choice-btn.correct{ border-color: var(--c-success); background: #DCFCE7; color: var(--c-success); border-width: 2px;}
+.choice-btn.wrong{ border-color: var(--c-error); background: #FEE2E2; color: var(--c-error); border-width: 2px;}
 
-.feedback{
-  margin-top: 1.2rem;
-  padding: 1.2rem;
-  border-radius: 12px;
-  display: none;
-  font-size: 14px;
-  border: 1px solid;
-}
-.feedback.show{display:block; animation: fadeIn 0.3s;}
-.feedback.correct{background:#062010; border-color:var(--c-success);}
-.feedback.wrong{background:#200606; border-color:var(--c-error);}
-.fb-head{font-weight:900; font-size: 17px; margin-bottom: 6px;}
+.feedback{ padding: 0.8rem; border-radius: 10px; display: none; margin-top: 10px; border: 1px solid;}
+.feedback.show{display:block;}
+.feedback.correct{background:#DCFCE7; border-color:var(--c-success); color: #064E3B;}
+.feedback.wrong{background:#FEE2E2; border-color:var(--c-error); color: #7F1D1D;}
 
 .next-btn{
-  margin-top: 1.5rem;
-  width: 100%;
-  padding: 1.2rem;
-  background: var(--c-fire);
-  border: none;
-  border-radius: 12px;
-  color: #000;
-  font-weight: 900;
-  font-size: 16px;
-  cursor: pointer;
-  display: none;
+  margin-top: 10px; width: 100%; padding: 1rem; background: var(--c-main); border: none; border-radius: 12px; color: #fff; font-weight: bold; font-size: 17px; cursor: pointer; display: none; box-shadow: 0 4px 0 var(--c-deep);
 }
 
-/* ===== RESULT SCREEN ===== */
-.result-top{
-  background: #111;
-  border: 1px solid #FF4D00;
-  border-radius: 20px;
-  padding: 2.5rem 1.5rem;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-.score-big{font-size: 64px; font-weight: 900; color: var(--c-gold);}
-.score-msg{font-size: 17px; font-weight: 700; margin-top: 1rem; padding: 0 10px;}
-.retry-btn{
-  width: 100%;
-  padding: 1.2rem;
-  background: #fff;
-  color: #000;
-  border: none;
-  border-radius: 12px;
-  font-weight: 900;
-  margin-bottom: 12px;
-  cursor: pointer;
-}
-.back-btn-res{
-  width: 100%;
-  padding: 1rem;
-  background: transparent;
-  color: #888;
-  border: 1px solid #333;
-  border-radius: 12px;
-  cursor: pointer;
-}
+/* ===== 結果画面 ===== */
+.result-top{ background: #fff; border: 2px solid var(--c-main); border-radius: 20px; padding: 2rem 1rem; text-align: center; margin-bottom: 1rem; }
+.score-big{ font-size: 56px; font-weight: 900; color: var(--c-main); }
 </style>
 </head>
 <body>
@@ -210,28 +141,30 @@ body{
   <div id="start" class="screen active">
     <div class="hero-badge">インスタ本気合宿参加特典</div>
     <div class="app-title">成功への扉！<br>インスタ本気合宿<br>総復習クイズ</div>
-    <div class="app-sub">学んだことをちゃんと復習して、<br>インスタ運用の「基準」を極限まで引き上げましょう🔥</div>
+    <div class="app-sub">インスタ運用の「基準」を極限まで引き上げましょう🔥</div>
     
     <div class="genre-grid">
       <button class="genre-card" onclick="startQuiz('stories')">
-        <span class="g-dot">📱</span>
-        <div class="genre-name">ストーリーズ</div>
-        <div class="genre-count">MISSION: 4</div>
+        <span style="font-size:20px">📱</span>
+        <span class="genre-name">ストーリーズ</span>
+        <span class="genre-count">全 10 問</span>
       </button>
       <button class="genre-card" onclick="startQuiz('reels')">
-        <span class="g-dot">🎬</span>
-        <div class="genre-name">リール投稿</div>
-        <div class="genre-count">MISSION: 4</div>
+        <span style="font-size:20px">🎬</span>
+        <span class="genre-name">リール投稿</span>
+        <span class="genre-count">全 10 問</span>
       </button>
       <button class="genre-card" onclick="startQuiz('profile')">
-        <span class="g-dot">👤</span>
-        <div class="genre-name">プロフィール</div>
-        <div class="genre-count">MISSION: 4</div>
+        <span style="font-size:20px">👤</span>
+        <span class="genre-name">プロフィール</span>
+        <span class="genre-count">全 10 問</span>
       </button>
       <button class="genre-card all-card" onclick="startQuiz('all')">
-        <span class="g-dot">🔥</span>
-        <div class="genre-name">全ジャンル・最終試練</div>
-        <div class="genre-count">12 QUESTIONS</div>
+        <span style="font-size:24px">🔥</span>
+        <div class="genre-info">
+          <span class="genre-name" style="margin:0">全ジャンル・最終試練</span>
+          <span class="genre-count">30問 連続挑戦</span>
+        </div>
       </button>
     </div>
   </div>
@@ -239,64 +172,76 @@ body{
   <div id="quiz" class="screen">
     <div class="q-header">
       <div class="q-meta">
-        <div class="q-badge-wrap">
-          <span class="q-badge" id="genre-badge"></span>
-          <span id="q-counter" style="font-size:12px; color:#FF4D00; font-weight:800;"></span>
-        </div>
-        <button class="home-btn" onclick="confirmGoHome()">🏠 HOME</button>
+        <span class="q-badge" id="genre-badge"></span>
+        <button class="home-btn" onclick="confirmGoHome()">戻る</button>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill"></div>
-      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <div id="q-counter" style="font-size:13px; color:var(--c-main); font-weight:bold;"></div>
     </div>
     <div class="question-text" id="question-text"></div>
     <div id="choices"></div>
     <div class="feedback" id="feedback">
-      <div class="fb-head" id="fb-head"></div>
-      <div id="fb-body"></div>
+      <div style="font-weight:bold; font-size:16px; margin-bottom:2px;" id="fb-head"></div>
+      <div id="fb-body" style="font-size:14px; font-weight:500;"></div>
     </div>
     <button class="next-btn" id="next-btn" onclick="nextQuestion()"></button>
   </div>
 
   <div id="result" class="screen">
     <div class="result-top">
-      <div style="font-size:10px; letter-spacing:0.2em; color:#FF4D00; margin-bottom:10px">MISSION COMPLETE</div>
+      <div style="font-size:13px; font-weight:bold; color:var(--c-main); margin-bottom:5px">合格判定</div>
       <div class="score-wrap">
         <span class="score-big" id="score-big">0</span>
-        <span style="font-size:22px; color:#444"> / <span id="score-denom"></span></span>
+        <span style="font-size:20px; color:#999"> / <span id="score-denom"></span></span>
       </div>
-      <div class="score-msg" id="score-msg"></div>
+      <div id="score-msg" style="margin-top:0.8rem; font-weight:bold; font-size:15px; line-height:1.4;"></div>
     </div>
-    <div id="result-list" style="margin-bottom:1.5rem"></div>
-    <button class="retry-btn" onclick="retryQuiz()">もう一度、己を磨く</button>
-    <button class="back-btn-res" onclick="goHome()">ジャンル選択に戻る</button>
+    <button style="width:100%; padding:1.1rem; background:var(--c-deep); color:#fff; border:none; border-radius:12px; font-weight:bold; font-size:17px; cursor:pointer; margin-bottom:10px;" onclick="retryQuiz()">もう一度挑戦する</button>
+    <button style="width:100%; padding:0.8rem; background:transparent; color:var(--c-deep); border:1px solid #FED7AA; border-radius:12px; cursor:pointer; font-weight:bold;" onclick="goHome()">ジャンル選択に戻る</button>
   </div>
 </div>
 
 <script>
 const Q = {
   stories: [
-    { q: "ストーリーズの画像1枚で伝えるべき構成として、最も効果的なのはどれ？", choices: ["商品の詳細スペックを細かく記載する", "フックで興味を引き、問題提示で共感させ、CTAへ誘導する", "できるだけ多くの情報を詰め込む", "おしゃれなデザインを最優先にする"], correct: 1, explain: "ストーリーズは1枚で完結。フック→問題提示→CTAの流れが鉄則です。" },
-    { q: "ストーリーズで「フック」として最も適切なのはどれ？", choices: ["「こんにちは！今日もよろしくお願いします」", "「新商品のご紹介です」", "「これを知らないと損してます」「〇〇で悩んでいませんか？」", "ブランドロゴを大きく表示する"], correct: 2, explain: "1秒で指を止めさせるフック。疑問・問いかけ・損失回避が強力です。" },
-    { q: "ストーリーズのCTA（行動喚起）として適切なものはどれ？", choices: ["「よかったら見てみてください」", "「プロフィールのリンクをタップして詳細をチェック」", "「いいねしてくれると嬉しいです」", "何も書かずデザインだけで伝える"], correct: 1, explain: "曖昧さは離脱を生みます。具体的なアクションを明示しましょう。" },
-    { q: "ストーリーズは一般的に何秒で視聴を続けるか判断される？", choices: ["15〜30秒じっくり読んでもらえる", "1〜3秒で判断される", "最後まで必ず見てもらえる", "再生速度は関係ない"], correct: 1, explain: "1〜3秒で不要と思われたら即座にスキップ。最初の一言が命です。" }
+    { q: "インスタの仕組みで「この二人は仲が良い」と最も強く判断される読者の動きはどれですか？", choices: ["投稿を最後まで見た", "メッセージのやり取り", "アンケートに答えた", "画面を長押しした"], correct: 1, explain: "メッセージのやり取りは、インスタから「深い付き合いがある」とみなされます。これが一番、表示されやすくなる理由です。" },
+    { q: "ストーリーを途中で止められずに最後まで見てもらうコツは？", choices: ["文字をギッシリ書く", "最初の3枚で興味を引く", "デザインを毎回変える", "答えを最後まで隠す"], correct: 1, explain: "ストーリーは「紙芝居」のようなものです。出だしで興味を持ってもらい、スムーズに進むことが離脱を防ぎます。" },
+    { q: "閲覧数がガクンと落ちた時、表示をやり直す「リセット」の方法は？", choices: ["1日20枚投稿する", "24時間投稿を止める", "ハッシュタグを増やす", "昔の投稿を出す"], correct: 1, explain: "一度すべての投稿が消える24時間を待つことで、悪い流れがリセットされます。その後、答えやすい質問を出すのがコツです。" },
+    { q: "リンク（青いボタン）を押してもらうために、一番大切なことは？", choices: ["1枚目にすぐ置く", "解決後の良さを伝える", "画面中央に大きく置く", "何度もお願いする"], correct: 1, explain: "「なぜ押す必要があるのか」という理由がないと、人はボタンを押さずに通り過ぎてしまいます。" },
+    { q: "アンケートボタンの置き場所で、最も答えを貰いやすいのは？", choices: ["画面の一番上", "親指が届きやすい場所", "写真の邪魔をしない端", "どこでも同じ"], correct: 1, explain: "多くの人は片手で操作しています。親指が届きにくい場所にあると、面倒になって答えてくれません。" },
+    { q: "まずは誰に喜んでもらえる投稿を出すのが、一番効率が良い？", choices: ["新しいお客さん候補", "自分に興味がない人", "今のフォロワーさん", "ライバルのファン"], correct: 2, explain: "まずは「いつも見てくれる人」に喜んでもらうことで、インスタ側が「これは良い投稿だ」と判断し、新しい人へ広げてくれます。" },
+    { q: "お客さんの投稿を紹介（タグ付け返し）するメリットは？", choices: ["投稿を作る手間が省ける", "次の口コミが増える", "フォロワーが勝手に増える", "オシャレに見える"], correct: 1, explain: "紹介された人は嬉しくなり、また応援したくなります。この「信頼の連鎖」がお客さんを増やします。" },
+    { q: "投稿をじっくり見てもらう（再生時間を稼ぐ）ためにプロが使う技は？", choices: ["隅に小さな補足を入れる", "動画を無音にする", "長く自分を写す動画", "ボタンの周りを光らせる"], correct: 0, explain: "「何て書いてあるかな？」と画面を止めたり、よく見ようとさせる工夫が、インスタからの高い評価に繋がります。" },
+    { q: "ストーリーの「ハッシュタグ」は、今の仕組みではどう扱うのが正解？", choices: ["無理に付けなくて良い", "10個以上は必ず付ける", "隠してこっそり付ける", "英語のタグを付ける"], correct: 0, explain: "現在のインスタは、タグよりも「投稿の中身そのもの」を自動で判別しています。無理にタグを付ける必要はありません。" },
+    { q: "1日の投稿枚数について、一番「嫌われない」考え方は？", choices: ["多ければ多いほど良い", "毎日5枚は義務とする", "話が完結する枚数に絞る", "見る人が減ったらやめる"], correct: 2, explain: "中身の薄い投稿をダラダラ続けると、見る側は飛ばすようになります。意味のある内容を1セットで出すのが正解です。" }
   ],
   reels: [
-    { q: "リール投稿で最初の数秒に必ず入れるべきものはどれ？", choices: ["自己紹介とアカウント名", "BGMのみで視覚的な静止画", "視聴者が「続きを見たい」と思うフック（問いかけや驚き）", "エンドロールとクレジット"], correct: 2, explain: "冒頭1秒がすべて。視聴維持率を稼ぐためのフックを必ず入れましょう。" },
-    { q: "リールのキャプション（説明文）の役割として正しいのはどれ？", choices: ["動画の内容をすべて文字で書き起こす", "ハッシュタグを50個以上並べる", "動画で伝えた価値を補完し、保存・コメントを促す", "書かなくてもアルゴリズムに影響しない"], correct: 2, explain: "キャプションは滞在時間を伸ばし、保存シグナルを貰うための戦場です。" },
-    { q: "リールのハッシュタグ戦略として効果的なのはどれ？", choices: ["人気タグを無差別に30個付ける", "ジャンルに合った中〜小規模タグを5〜10個絞る", "ハッシュタグは一切使わない", "タグは毎回同じものを使い続ける"], correct: 1, explain: "広すぎるタグは埋もれます。中〜小規模タグで専門性を学習させましょう。" },
-    { q: "リールの投稿頻度として、アルゴリズム上おすすめなのはどれ？", choices: ["月1回、クオリティ重視で投稿する", "毎日必ず投稿しないといけない", "週3〜5回を目安に、継続できるペースで投稿する", "思いついたときだけ投稿する"], correct: 2, explain: "「継続」は最大の信頼。週3〜5回で質を落とさず戦うのが勝利への近道です。" }
+    { q: "リール動画で最短で結果を出すための「お手本の探し方」として、最も正しいのはどれですか？", choices: ["有名な人の投稿を真似る", "フォロワーが少ないのに再生数が多い動画", "自分が撮りたいものを撮る", "直近1週間の投稿だけ見る"], correct: 1, explain: "知名度ではなく内容の力だけで伸びている動画を探すのが、成功への近道です。" },
+    { q: "「異常値」と呼ばれる、特にお手本にすべき動画の再生数の目安は？", choices: ["フォロワー数の10倍以上", "フォロワー数と同じ", "常に1万回以上", "いいね数が多いもの"], correct: 0, explain: "平均的な数字ではなく、フォロワー数と再生数の大きなギャップに注目するのがプロの視点です。" },
+    { q: "動画が1秒で飛ばされるのを防ぐために、冒頭で絶対にやってはいけないことは？", choices: ["衝撃的な映像を見せる", "丁寧な挨拶をする", "動画の結論を先に言う", "読者の悩みを言い当てる"], correct: 1, explain: "知らない人の画面に突然出るリールでは、挨拶をしている間に読者は去ってしまいます。" },
+    { q: "リール台本を書くときに、読者が疲れて離脱するのを防ぐための鉄則は？", choices: ["文字を画面いっぱいに出す", "1動画につきテーマを1つに絞る", "わざと早口で喋る", "頑張りましょうと励ます"], correct: 1, explain: "情報が多すぎると何が言いたいか伝わりません。1つのリールには1つのテーマで簡潔にまとめましょう。" },
+    { q: "役立つ情報を伝える教育系の動画で、最も離脱されにくい構成はどれ？", choices: ["ストーリーテリング型", "結論ファースト型", "ランキングリスト型", "Q&A回答型"], correct: 1, explain: "結論、理由、解決策の順で話すと価値がすぐに伝わり、最後まで見てもらいやすくなります。" },
+    { q: "あなた自身のファンになってもらうために、最も適した物語の構成はどれ？", choices: ["成功体験だけを語る型", "人間味のある失敗談や成長物語", "商品の良さを伝える型", "流行を追いかける型"], correct: 1, explain: "完璧な姿より、泥臭い成長過程を見せることで読者は感情移入し、ファンになってくれます。" },
+    { q: "リール動画の広まりを助けてくれる「音楽（音源）」選びの目印は？", choices: ["自分の好きな曲", "右肩上がりの矢印がある曲", "誰もが知る超有名な曲", "音が一切ない無音"], correct: 1, explain: "音源名の横の右肩上がりの矢印は現在勢いがある証拠です。この波に乗るのが最短の勝ち筋です。" },
+    { q: "トーク系動画で、声を聞き取りやすくするための理想的な音量バランスは？", choices: ["声100：BGM 5～10", "声100：BGM 50", "声とBGMを同じにする", "BGMを一切入れない"], correct: 0, explain: "声の聞き取りやすさが最優先です。BGMはうっすら流れる程度が、最も読者に親切な設計です。" },
+    { q: "表紙（サムネイル）を作る際、文字が切れて見栄えが悪くなるのを防ぐコツは？", choices: ["画面の端に書く", "真ん中の正方形部分に文字を収める", "文字を白一色にする", "情報をたくさん詰め込む"], correct: 1, explain: "プロフィール画面では正方形で表示されます。見切れないよう中央の範囲を意識して文字を配置しましょう。" },
+    { q: "投稿直前の設定で、動画がボヤけて見栄えが悪くなるのを防ぐための必須項目は？", choices: ["最高画質でアップロードをON", "場所を細かく入力", "ハッシュタグを30個付ける", "トピックを10個以上選ぶ"], correct: 0, explain: "この設定を忘れると、インスタ側で動画が圧縮され、画質が大幅に落ちてしまいます。" }
   ],
   profile: [
-    { q: "プロフィールの「名前（表示名）」に入れるべき内容として最も適切なのはどれ？", choices: ["本名のフルネームをそのまま入力する", "自分の肩書きや専門性を示す言葉（それだけで何者か伝わる内容）", "かわいいニックネームや記号を並べる", "アカウントIDと全く同じにする"], correct: 1, explain: "名前は検索キーワード。入っていないのは大きな機会損失です。" },
-    { q: "プロフィール文（bio）で最初に伝えるべきことはどれ？", choices: ["趣味や出身地などの個人情報", "フォロワーへのお礼と挨拶", "このアカウントをフォローすると何が得られるか（ベネフィット）", "投稿頻度と更新スケジュール"], correct: 2, explain: "ユーザーは「自分に何の得があるか」を瞬時に判断します。" },
-    { q: "プロフィール画像（アイコン）として最も効果的なのはどれ？", choices: ["風景写真や好きなキャラクター画像", "ロゴだけのシンプルなテキスト画像", "顔がはっきり写っている写真（親近感・信頼感が出る）", "毎月違う写真に変える"], correct: 2, explain: "アイコンは信頼の顔。清潔感のある顔出し写真はフォロー率に直結します。顔出ししない場合はイラストなども有効です。" },
-    { q: "プロフィールのリンク先として最も効果的なのはどれ？", choices: ["Instagramトップページに戻るリンク", "目的（LINE登録・LP・申し込み）に直結する1本のURL", "すべてのSNSアカウントを羅列したリンク集", "リンクは設定しなくても問題ない"], correct: 1, explain: "選択肢が多いと人は選べません。最優先の出口一つに絞りましょう。" }
+    { q: "相手があなたのプロフィールを見て、フォローするかを決める時間はどれくらい？", choices: ["30秒以内", "5秒以内", "1分以上", "飽きるまで"], correct: 1, explain: "ユーザーはわずか5秒以内で判断を下します。一瞬の分かりやすさが何よりも重要です。" },
+    { q: "プロフィールを作る時、見た目の素敵さよりも最優先すべきことは何？", choices: ["最新の流行", "分かりやすさ", "自分の好きな色", "豪華な経歴"], correct: 1, explain: "オシャレさよりも、パッと見て何のアカウントか分かる分かりやすさが最優先のルールです。" },
+    { q: "アカウント名の鉄板ルールとして、正しい組み合わせはどれ？", choices: ["本名のみ", "好きな英単語のみ", "名前 ＋ 肩書き", "あだ名だけ"], correct: 2, explain: "名前と肩書きを組み合わせるのが基本の形です。肩書きで何の人かをハッキリ伝えましょう。" },
+    { q: "アカウント名に検索されそうな言葉を入れるべき最大の理由は？", choices: ["検索対象になるから", "名前が長いとかっこいいから", "フォロワー外へ通知が行くから", "海外の人に見つかるから"], correct: 0, explain: "アカウント名はインスタ内の検索に引っかかります。探されている言葉を入れるのが鉄則です。" },
+    { q: "自分の名前を付ける時、覚えやすくするために推奨されている文字数は？", choices: ["10文字以内", "2文字だけ", "4文字以内", "制限はない"], correct: 2, explain: "呼びやすく覚えやすい4文字以内がポイントです。あだ名でも大丈夫です。" },
+    { q: "プロフィール文章の中で、勝負が決まると言われているのはどこ？", choices: ["最初の2行", "最後の一文", "真ん中の実績部分", "全体をまんべんなく"], correct: 0, explain: "何についてのアカウントか、最初の2行で伝えることがフォローされるかどうかの分かれ道です。" },
+    { q: "まだ大きな実績がない場合、信頼してもらうために実績の欄にどう書くのが正解？", choices: ["嘘でもいいから大きな数字を書く", "小さな具体的な数字や経験を書く", "実績の欄は空欄にする", "有名な人の実績を借りる"], correct: 1, explain: "立派な実績がなくても、小さくても具体的な数字や、これまでの経験・背景を載せることで信頼に繋がります。" },
+    { q: "アイコン画像の中で、最も信頼性が高いのはどれ？", choices: ["オシャレな風景写真", "会社のロゴマーク", "実写の顔写真", "好きなキャラクター"], correct: 2, explain: "顔写真の実写が最も信頼性が高いです。顔出しをしない場合はオリジナルの似顔絵を使いましょう。" },
+    { q: "プロフィール文章の最後に必ず入れるべき行動喚起（CTA）とはどういう意味？", choices: ["感謝の言葉", "リンクを押して等の指示", "自分の趣味の紹介", "今日の日記"], correct: 1, explain: "リンクをクリックしてほしいなど、最後にやってほしいことをハッキリ指示するのが大切です。" },
+    { q: "プロフィールの完成度について、正しい考え方はどれ？", choices: ["最初から完璧にする", "一度作ったら変えない", "反応を見ながら育てていく", "プロに任せて放置する"], correct: 2, explain: "プロフィールは一度作って終わりではなく、反応を見ながら改善を繰り返して育てていくものです。" }
   ]
 };
 
-const GENRE_LABEL = { stories: 'STORIES', reels: 'REELS', profile: 'PROFILE', all: 'FINAL MISSION' };
-let currentGenre = '', questions = [], currentIndex = 0, score = 0, answers = [], answered = false;
+let currentGenre = '', questions = [], currentIndex = 0, score = 0, answered = false;
 
 function show(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -305,8 +250,16 @@ function show(id) {
 
 function startQuiz(genre) {
   currentGenre = genre;
-  questions = genre === 'all' ? shuffle([...Q.stories, ...Q.reels, ...Q.profile]) : shuffle([...Q[genre]]);
-  currentIndex = 0; score = 0; answers = [];
+  if (genre === 'all') {
+    // それぞれのジャンル名を追加して合体させる
+    const s = Q.stories.map(q => ({...q, category: 'ストーリーズ'}));
+    const r = Q.reels.map(q => ({...q, category: 'リール投稿'}));
+    const p = Q.profile.map(q => ({...q, category: 'プロフィール'}));
+    questions = shuffle([...s, ...r, ...p]);
+  } else {
+    questions = shuffle([...Q[genre]]);
+  }
+  currentIndex = 0; score = 0;
   renderQ();
   show('quiz');
 }
@@ -316,8 +269,16 @@ function shuffle(a) { return a.sort(() => Math.random() - 0.5); }
 function renderQ() {
   answered = false;
   const q = questions[currentIndex], total = questions.length;
-  document.getElementById('genre-badge').textContent = GENRE_LABEL[currentGenre];
-  document.getElementById('q-counter').textContent = (currentIndex + 1) + ' / ' + total;
+  const labelMap = { stories: 'ストーリーズ', reels: 'リール投稿', profile: 'プロフィール', all: '最終試練' };
+  
+  let badgeText = labelMap[currentGenre];
+  // 最終試練の時だけ、その問題の本来のジャンルを横に添える
+  if (currentGenre === 'all' && q.category) {
+    badgeText = `最終試練（${q.category}）`;
+  }
+  
+  document.getElementById('genre-badge').textContent = badgeText;
+  document.getElementById('q-counter').textContent = (currentIndex + 1) + ' 問目 / ' + total;
   document.getElementById('progress-fill').style.width = (currentIndex / total * 100) + '%';
   document.getElementById('question-text').textContent = q.q;
   document.getElementById('feedback').className = 'feedback';
@@ -339,12 +300,14 @@ function pick(i) {
   const ok = i === q.correct;
   if (!ok) btns[i].classList.add('wrong');
   if (ok) score++;
-  answers.push({ q: q.q, ok, correctAnswer: q.choices[q.correct] });
-  document.getElementById('fb-head').textContent = ok ? '✓ その通り！素晴らしい！' : '✗ 惜しい！次で取り返しましょう！';
+
+  const fb = document.getElementById('feedback');
+  document.getElementById('fb-head').textContent = ok ? '✓ 正解です！' : '✗ 残念、不正解です';
   document.getElementById('fb-body').textContent = q.explain;
-  document.getElementById('feedback').className = 'feedback show ' + (ok ? 'correct' : 'wrong');
+  fb.className = 'feedback show ' + (ok ? 'correct' : 'wrong');
+  
   const nb = document.getElementById('next-btn');
-  nb.textContent = currentIndex < questions.length - 1 ? '次なるステップへ' : '運命の結果を確認';
+  nb.textContent = currentIndex < questions.length - 1 ? '次の問題へ進む' : '最終結果を確認する';
   nb.style.display = 'block';
 }
 
@@ -359,27 +322,14 @@ function showResult() {
   document.getElementById('score-big').textContent = score;
   document.getElementById('score-denom').textContent = total;
   const pct = score / total;
-
-  let message = '';
-  if (pct === 1) {
-    message = '全問正解！完璧です！合宿での学びが完全にあなたの力になっていますね。この情熱をそのまま実践にぶつけましょう！';
-  } else if (pct >= 0.8) {
-    message = 'あともう一息！素晴らしい集中力です。あと少しの修正で完璧になれます。最高の結果を目指してリトライしましょう！';
-  } else if (pct >= 0.5) {
-    message = '着実にステップアップしていますね！半分は自分のものにできています。残りの半分も一緒に克服して、自信を深めていきましょう！';
-  } else {
-    message = '伸びしろたっぷりです！まずは焦らず、もう一度資料を振り返ってみましょう。基礎を固めれば、必ず視界が開けてきます。次はもっといけますよ！';
-  }
-  document.getElementById('score-msg').textContent = message;
+  let msg = pct === 1 ? "【素晴らしい！】完璧です。自信を持って運用しましょう！" : pct >= 0.8 ? "【プロ級です！】あと少しで満点です。間違えた部分を復習すれば完璧です。" : pct >= 0.5 ? "【合格です】基礎はしっかりしています。あともう一息です。" : "【伸び代あり！】焦らなくて大丈夫です。もう一度基本から固めていきましょう。";
+  document.getElementById('score-msg').textContent = msg;
   show('result');
 }
 
 function confirmGoHome() {
-  if (confirm("挑戦を中断してホームに戻りますか？\n（これまでの進行状況はリセットされます）")) {
-    goHome();
-  }
+  if (confirm("戻りますか？（今の成績は消えます）")) goHome();
 }
-
 function retryQuiz() { startQuiz(currentGenre); }
 function goHome() { show('start'); }
 </script>
